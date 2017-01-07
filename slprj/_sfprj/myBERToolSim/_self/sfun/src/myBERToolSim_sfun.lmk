@@ -1,0 +1,36 @@
+CC     = "c:\program files\matlab\r2009a\sys\lcc\bin\lcc.exe"
+LD     = "c:\program files\matlab\r2009a\sys\lcc\bin\lcclnk.exe"
+LIBCMD = "c:\program files\matlab\r2009a\sys\lcc\bin\lcclib.exe"
+CFLAGS = -c -Zp8 -DMATLAB_MEX_FILE -noregistrylookup
+LDFLAGS = -s -dll -L"c:\program files\matlab\r2009a\sys\lcc\lib"
+LIBFLAGS = 
+
+OBJECTS = \
+	"myBERToolSim_sfun.obj"\
+	"myBERToolSim_sfun_registry.obj"\
+	"c2_myBERToolSim.obj"\
+	"lccstub.obj"\
+	"c:\program files\matlab\r2009a\sys\lcc\mex\lccdef.def"\
+	"c:\program files\matlab\r2009a\stateflow\c\debugger\lib\win32\sfc_debuglcc.lib"\
+	"c:\program files\matlab\r2009a\stateflow\c\mex\lib\win32\sfc_mexlcc.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libmex.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libmx.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libfixedpoint.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libut.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libmwmathutil.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libemlrt.lib"\
+	"c:\program files\matlab\r2009a\extern\lib\win32\lcc\libmwblascompat32.lib"\
+
+INCLUDE_PATH= -I"c:\program files\matlab\r2009a\sys\lcc\include"  -I"c:\program files\matlab\r2009a\extern\include"  -I"c:\program files\matlab\r2009a\simulink\include"  -I"c:\program files\matlab\r2009a\stateflow\c\mex\include"  -I"c:\program files\matlab\r2009a\stateflow\c\debugger\include" 
+ 
+
+myBERToolSim_sfun.mexw32 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o myBERToolSim_sfun.mexw32 @myBERToolSim_sfun.lmko
+myBERToolSim_sfun.obj :	"myBERToolSim_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "myBERToolSim_sfun.c"
+myBERToolSim_sfun_registry.obj :	"myBERToolSim_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "myBERToolSim_sfun_registry.c"
+c2_myBERToolSim.obj :	"c2_myBERToolSim.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_myBERToolSim.c"
+lccstub.obj :	"c:\program files\matlab\r2009a\sys\lcc\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c:\program files\matlab\r2009a\sys\lcc\mex\lccstub.c"
